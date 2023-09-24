@@ -38,6 +38,7 @@ string sorting(string newstr);
 
 int main()
 {
+    std::locale loc("ru_RU.utf8");
     task1();
     //task2();
 }
