@@ -7,9 +7,11 @@ using std::cin;
 using std::string;
 
 string task1();
-//string task2();
+int task2();
 bool check(char s, string signs);
 string sorting(string newstr);
+int hosoya(int* n, int* i);
+int fibNum(int n);
 
 /*
 1 задание часть А:
@@ -40,7 +42,7 @@ int main()
 {
     std::locale loc("ru_RU.utf8");
     task1();
-    //task2();
+    task2();
 }
 
 
@@ -50,12 +52,12 @@ string task1() {
     cout << "enter the string: ";
     cin >> str;
 
-    string signs = "! @ # $ % ^ & * ( ) _ + - = | \ / ? . , : ;";
+    string signs = "! @ # $ % ^ & * ( ) _ + - = | \ / ? . , : ; ' ";
     for (int i = 0; i < str.length(); ++i) {
         if (!check(str[i], signs)) newstr += str[i];
     }
     
-    cout << sorting(newstr);
+    cout << sorting(newstr) << "\n";
     return sorting(newstr);
 }
 
@@ -78,6 +80,35 @@ string sorting(string newstr) {
     return newstr2;
 }
 
-//string task2() {
-//
-//}
+int task2() {
+    int* num = new int;
+    int* i = new int;
+    int* j = new int;
+    int* k = new int;
+
+    cout << "Enter the number of lines: ";
+    cin >> *num;
+    cout << '\n';
+    
+    for (*i = 0; *i <= *num; ++ * i) {
+        for (*j = 0; *j < *num - *i; ++ * j) {
+            cout << " ";
+        }
+        for (*k = 0; *k <= *i; ++ * k) {
+            cout << hosoya(i, k) << " ";
+        }
+        cout << "\n";
+    }
+    delete num, i, j, k;
+    return 0;
+}
+
+int hosoya(int* n, int* i) {
+    return fibNum(*i + 1) * fibNum(*n - *i + 1);
+}
+
+int fibNum(int n) {
+    if (n == 0) return 0;
+    if (n == 1) return 1;
+    return fibNum(n - 1) + fibNum(n - 2);
+}
