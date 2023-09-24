@@ -6,9 +6,9 @@ using std::cin;
 using std::string;
 
 /*
-1) strlen - 
-2) strcpy - 
-3) strcmp - 
+1) strlen - string::length
+2) strcpy - аналога нет, пишем a = b
+3) strcmp - compare()
 4) strcat - 
 5) someString[index] -  (getting the character at index)
 6) - push_back
