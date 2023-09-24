@@ -6,12 +6,15 @@ using std::cout;
 using std::cin;
 using std::string;
 
-string task1();
-int task2();
-bool check(char s, string signs);
-string sorting(string newstr);
-int hosoya(int* n, int* i);
-int fibNum(int n);
+//string task1();
+//int task2();
+//bool check(char s, string signs);
+//string sorting(string newstr);
+//int hosoya(int* n, int* i);
+//int fibNum(int n);
+int AddTask();
+template <typename T>
+T summ_all(T data);
 
 /*
 1 задание часть А:
@@ -40,75 +43,117 @@ int fibNum(int n);
 
 int main()
 {
-    std::locale loc("ru_RU.utf8");
-    task1();
-    task2();
+    //std::locale loc("ru_RU.utf8");
+    //task1();
+    //task2();
+    AddTask();
 }
 
 
-string task1() {
-    string str;
-    string newstr;
-    cout << "enter the string: ";
-    cin >> str;
+//string task1() {
+//    string str;
+//    string newstr;
+//    cout << "enter the string: ";
+//    cin >> str;
+//
+//    string signs = "! @ # $ % ^ & * ( ) _ + - = | \ / ? . , : ; ' ";
+//    for (int i = 0; i < str.length(); ++i) {
+//        if (!check(str[i], signs)) newstr += str[i];
+//    }
+//    
+//    cout << sorting(newstr) << "\n";
+//    return sorting(newstr);
+//}
+//
+//bool check(char s, string signs) {
+//    for (int i = 0; i < signs.length(); ++i) if (s == signs[i]) return true;
+//    return false;
+//}
+//
+//string sorting(string newstr) {
+//    string newstr2 = newstr;
+//    for (int i = 0; i < newstr2.length(); ++i) {
+//        for (int j = 0; j < newstr2.length() - i - 1; ++j) {
+//            if (newstr2[j] < newstr2[j + 1]) continue;
+//            char box = newstr2[j];
+//            newstr2[j] = newstr2[j + 1];
+//            newstr2[j + 1] = box;
+//        }
+//    }
+//
+//    return newstr2;
+//}
+//
+//int task2() {
+//    int* num = new int;
+//    int* i = new int;
+//    int* j = new int;
+//    int* k = new int;
+//
+//    cout << "Enter the number of lines: ";
+//    cin >> *num;
+//    cout << '\n';
+//    
+//    for (*i = 0; *i <= *num; ++ * i) {
+//        for (*j = 0; *j < *num - *i; ++ * j) {
+//            cout << " ";
+//        }
+//        for (*k = 0; *k <= *i; ++ * k) {
+//            cout << hosoya(i, k) << " ";
+//        }
+//        cout << "\n";
+//    }
+//    delete num, i, j, k;
+//    return 0;
+//}
+//
+//int hosoya(int* j, int* i) {
+//    return fibNum(*i + 1) * fibNum(*j - *i + 1);
+//}
+//
+//int fibNum(int n) {
+//    if (n == 0) return 0;
+//    if (n == 1) return 1;
+//    return fibNum(n - 1) + fibNum(n - 2);
+//}
+//
+//
+int AddTask() {
+    setlocale(LC_ALL, "rus");
+    int n;
+    cout << "Введите кол-во суммирующихся символы: ";
+    cin >> n;
+    cout << "Введите строку: ";
 
-    string signs = "! @ # $ % ^ & * ( ) _ + - = | \ / ? . , : ; ' ";
-    for (int i = 0; i < str.length(); ++i) {
-        if (!check(str[i], signs)) newstr += str[i];
+    std::vector<string> data(n);
+    for (int i = 0; i < n; ++i) {
+        cin >> data[i];
     }
-    
-    cout << sorting(newstr) << "\n";
-    return sorting(newstr);
-}
 
-bool check(char s, string signs) {
-    for (int i = 0; i < signs.length(); ++i) if (s == signs[i]) return true;
-    return false;
-}
-
-string sorting(string newstr) {
-    string newstr2 = newstr;
-    for (int i = 0; i < newstr2.length(); ++i) {
-        for (int j = 0; j < newstr2.length() - i - 1; ++j) {
-            if (newstr2[j] < newstr2[j + 1]) continue;
-            char box = newstr2[j];
-            newstr2[j] = newstr2[j + 1];
-            newstr2[j + 1] = box;
-        }
-    }
-
-    return newstr2;
-}
-
-int task2() {
-    int* num = new int;
-    int* i = new int;
-    int* j = new int;
-    int* k = new int;
-
-    cout << "Enter the number of lines: ";
-    cin >> *num;
-    cout << '\n';
-    
-    for (*i = 0; *i <= *num; ++ * i) {
-        for (*j = 0; *j < *num - *i; ++ * j) {
-            cout << " ";
-        }
-        for (*k = 0; *k <= *i; ++ * k) {
-            cout << hosoya(i, k) << " ";
-        }
-        cout << "\n";
-    }
-    delete num, i, j, k;
+    summ_all(data);
     return 0;
 }
 
-int hosoya(int* n, int* i) {
-    return fibNum(*i + 1) * fibNum(*n - *i + 1);
+template <typename T>
+T sum_all(T arg) {
+    return arg;
 }
 
-int fibNum(int n) {
-    if (n == 0) return 0;
-    if (n == 1) return 1;
-    return fibNum(n - 1) + fibNum(n - 2);
+// Перегрузка функции для суммирования вектора чисел
+template <typename T>
+T sum_all(const std::vector<T>& vec) {
+    T sum = T();
+    for (const T& elem : vec) {
+        sum += elem;
+    }
+    return sum;
+}
+
+// Перегрузка функции для суммирования вектора строк
+std::string sum_all(const std::vector<std::string>& vec) {
+    std::string result = "";
+    for (const std::string& str : vec) {
+        result += str;
+    }
+    return result;
 }
